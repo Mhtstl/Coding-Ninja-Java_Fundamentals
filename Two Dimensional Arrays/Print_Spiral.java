@@ -8,33 +8,42 @@ That is, you need to print in the order followed for every iteration:
     d. First column(bottom to top)
 */
 
-public class Print_Spiral {
+public class Solution {
 
-    public static void spiralPrint(int matrix[][]){
-        //Your code goes here
-        if (matrix.length!=0)
-        {
-            int x = matrix[0].length;
-            int y = matrix.length;
-            for (int i = 0; i < x / 2+1; i++)
-            {
-                for (int j = i; j < x - i; j++)
-                {
-                    System.out.print(matrix[i][j] + " ");
-                }
-                for (int j = i + 1; j < y - i; j++)
-                {
-                    System.out.print(matrix[j][x - 1 - i] + " ");
-                }
-                for (int j = x - 2 - i; j >= i; j--)
-                {
-                    System.out.print(matrix[y - 1 - i][j] + " ");
-                }
-                for (int j = y - 2 - i; j >= i + 1; j--)
-                {
-                    System.out.print(matrix[j][i] + " ");
-                }
+	public static void spiralPrint(int matrix[][]){
+		//Your code goes here
+		 if(matrix.length == 0)return ;
+        
+        int T = 0, P = matrix.length -1;
+        int R = 0, C = matrix[0].length -1;
+        
+        int Z = matrix.length * matrix[0].length;
+        int count = 0;
+        
+        while(  count  < Z){
+            for(int i = R; i<= C && count <Z ; i++){
+                count++;
+               System.out.print(matrix[T][i]+" ");
             }
+            T++;
+            
+            for(int i = T; i<= P && count < Z; i++){
+                 count++;
+              System.out.print(matrix[i][C]+" ");
+            }
+            C--;
+            
+            for(int i = C; i>= R && count < Z; i-- ){
+                 count++;
+               System.out.print(matrix[P][i]+" ");
+            }
+            P--;
+            
+            for(int i = P; i>= T && count < Z ; i--){
+                 count++;
+               System.out.print(matrix[i][R]+" ");
+            }
+            R++;
         }
-    }
+	}
 }
